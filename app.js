@@ -39,8 +39,17 @@ function sortearAmigo(){
     } else {
         resultado.innerHTML = `Seleccionó a ${amigos[indice]} como su amigo/a secreto`;
         document.getElementById("sorteoBtn").setAttribute('disabled', 'true');
-        lista.innerHTML = '';
-        document.getElementById("amigo").disabled = true;
-        document.getElementById("agregarBtn").disabled = true;
+        document.getElementById("amigo").setAttribute("disabled", "true");
+        document.getElementById("agregarBtn").setAttribute("disabled", "true");
+        document.getElementById("reinicioBtn").removeAttribute('disabled');
     }
+}
+
+function reiniciarSorteo() {
+    amigos = [];
+    amigosSorteados = [];
+    lista.innerHTML = '';
+    document.getElementById("amigo").removeAttribute("disabled");
+    document.getElementById("agregarBtn").removeAttribute("disabled");
+    document.getElementById("resultado").innerHTML = '';
 }

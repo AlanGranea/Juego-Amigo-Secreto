@@ -88,8 +88,10 @@ body {
 }
 
 .button-container {
-    width: 300px;
+    width: 100%;
+    display: flex;
     justify-content: center;
+    gap: 10px;  /* Espacio entre los botones */
 }
 
 /* Estilos de entrada de texto */
@@ -121,7 +123,7 @@ button {
     border-radius: 0 25px 25px 0;
 }
 
-.button-add:hover {
+.button-add:hover{
     background-color: #a1a1a1;
 }
 
@@ -143,20 +145,29 @@ ul {
 }
 
 /* Botón de sortear título */
-.button-draw {
+.button-draw, .button-image {
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 10px 40px;
+    justify-content: center;
+    padding: 15px 30px;  /* Asegúrate de que ambos botones tengan el mismo padding */
     color: var(--color-white);
     background-color: var(--color-button);
     font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    width: 100%;  /* Ambos botones ocuparán el mismo ancho */
+    max-width: 200px;  /* O cualquier otro valor que se ajuste a tu diseño */
 }
 
-.button-draw img {
-    margin-right: 40px;
+/* Tamaño de las imágenes */
+.button-draw img, .button-image img {
+    margin-right: 10px;  /* Espacio entre la imagen y el texto */
+    width: 34px;  /* Ajusta el tamaño según lo necesites */
+    height: 35px;
 }
 
-.button-draw:hover {
-    background-color: var(--color-button-hover);
+.button-draw:hover, .button-image:hover {
+    background-color: #952800;
 }
