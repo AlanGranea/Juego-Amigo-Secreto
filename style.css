@@ -1,12 +1,11 @@
 :root {
-    --color-primary: #4B69FD;
     --color-secondary: #FFF9EB;
     --color-tertiary: #C4C4C4;
     --color-button: #fe652b;
     --color-button-hover: #e55720;
-    --color-text: #444444;
-    --color-white: #FFFFFF;
+    --color-text: #000000;
 }
+
 
 /* Estilos generales */
 * {
@@ -17,10 +16,17 @@
 
 body {
     height: 100vh;
-    background-color: var(--color-primary);
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: cambiarColorFondo 11s infinite alternate ease-in-out;
+    background: linear-gradient(90deg, 
+        #0dff00, #00d80f, #00c157, #00b694,
+        #00ffff, #00aaff, #0088d7, 
+        #0070ff, #0042e8, #0026ff, #0015b3 
+    );
+    background-size: 400% 400%;
+    filter: brightness(1.1) contrast(1.1);
 }
 
 .main-content {
@@ -58,14 +64,14 @@ body {
     font-family: "Merriweather", serif;
     font-weight: 900;
     font-style: italic;
-    color: var(--color-white);
+    color: #000000; 
+    animation: cambiarColorTitulo 11s infinite alternate ease-in-out; 
 }
 
 .section-title {
     font-family: "Inter", serif;
     font-size: 36px;
     font-weight: 700;
-    color: var(--color-primary);
     margin: 10px 0;
     text-align: center;
 }
@@ -132,13 +138,15 @@ ul {
     list-style-type: none;
     color: var(--color-text);
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
 }
 
 .result-list {
     margin-top: 15px;
-    color: #05DF05;
     font-size: 22px;
     font-weight: bold;
     text-align: center;
@@ -149,25 +157,89 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 30px;  /* Asegúrate de que ambos botones tengan el mismo padding */
-    color: var(--color-white);
+    padding: 15px 30px; 
+    color: var(--color-text);
     background-color: var(--color-button);
     font-size: 16px;
     border: 2px solid #000;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    width: 100%;  /* Ambos botones ocuparán el mismo ancho */
-    max-width: 200px;  /* O cualquier otro valor que se ajuste a tu diseño */
+    width: 100%; 
+    max-width: 200px;
 }
 
 /* Tamaño de las imágenes */
 .button-draw img, .button-image img {
-    margin-right: 10px;  /* Espacio entre la imagen y el texto */
-    width: 34px;  /* Ajusta el tamaño según lo necesites */
+    margin-right: 10px; 
+    width: 34px;  
     height: 35px;
 }
 
 .button-draw:hover, .button-image:hover {
     background-color: #952800;
+}
+
+.mensaje-alerta {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    display: none;
+    z-index: 1000;
+}
+
+@keyframes cambiarColorFondo {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes cambiarColorTitulo {
+    0% {color: #000000} 
+    10% {color: #1a1a1a}
+    20% {color: #333333}
+    30% {color: #4d4d4d}
+    40% {color: #666666}
+    50% {color: #808080} 
+    60% {color: #999999}
+    70% {color: #b3b3b3}
+    80% {color: #cccccc}
+    90% {color: #e6e6e6}
+    100% {color: #ffffff}
+}
+
+@keyframes cambiarColorTextoAnim {
+    0% {color: #0dff00}
+    10% {color: #00d80f}
+    20% {color: #00c157}
+    30% {color: #00b694}
+    40% {color: #00ffff}
+    50% {color: #00aaff}
+    60% {color: #0088d7}
+    70% {color: #0070ff}
+    80% {color: #0042e8}
+    90% {color: #0026ff}
+    100% {color: #0015b3}
+}
+
+.section-title, #resultado {
+    animation: cambiarColorTextoAnim 11s infinite alternate ease-in-out;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(20px);
+    z-index: -1;
 }
