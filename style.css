@@ -1,3 +1,4 @@
+/* Definición de colores principales */
 :root {
     --color-secondary: #FFF9EB;
     --color-tertiary: #C4C4C4;
@@ -6,14 +7,14 @@
     --color-text: #000000;
 }
 
-
-/* Estilos generales */
+/* Reset de márgenes y rellenos para todos los elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilo para la página con animación de fondo */
 body {
     height: 100vh;
     display: flex;
@@ -29,6 +30,7 @@ body {
     filter: brightness(1.1) contrast(1.1);
 }
 
+ /* Configuración de layout para el contenido principal */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -36,7 +38,7 @@ body {
     width: 100%;
 }
 
-/* Banner */
+/* Estilo para el banner de encabezado */
 .header-banner {
     flex: 40%;
     display: flex;
@@ -45,7 +47,7 @@ body {
     padding: 40px 0 0;
 }
 
-/* Sección de entrada */
+ /* Estilo para la sección donde se ingresan los amigos */
 .input-section {
     flex: 60%;
     background-color: var(--color-secondary);
@@ -97,7 +99,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 10px;  /* Espacio entre los botones */
+    gap: 10px; 
 }
 
 /* Estilos de entrada de texto */
@@ -133,7 +135,7 @@ button {
     background-color: #a1a1a1;
 }
 
-/* Listas */
+/* Estilos de listas */
 ul {
     list-style-type: none;
     color: var(--color-text);
@@ -142,17 +144,53 @@ ul {
     margin: 20px 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; 
+    gap: 20px;
+}
+
+li {
+    background-color: gray;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: auto;
+    opacity: 0;
+    animation: desvanecer 1.5s ease-in-out forwards;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes desvanecer {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Estilos para el borde cuando un bloque es seleccionado */
+li.selected {
+    animation: parpadeo 1s infinite; 
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Los bloques no seleccionados no tendrán animación de parpadeo */
+li:not(.selected) {
+    opacity: 1;
 }
 
 .result-list {
     margin-top: 15px;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
 }
 
-/* Botón de sortear título */
+/* Botón de sortear título y reiniciar sorteo*/
 .button-draw, .button-image {
     display: flex;
     align-items: center;
@@ -160,7 +198,7 @@ ul {
     padding: 15px 30px; 
     color: var(--color-text);
     background-color: var(--color-button);
-    font-size: 16px;
+    font-size: 20px;
     border: 2px solid #000;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -180,6 +218,7 @@ ul {
     background-color: #952800;
 }
 
+/* Estilo del mensaje de alerta */
 .mensaje-alerta {
     position: fixed;
     top: 20px;
@@ -189,17 +228,38 @@ ul {
     color: white;
     padding: 10px;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    font-family: "Arial", sans-serif;
     display: none;
     z-index: 1000;
 }
 
+.subrayado {
+    text-decoration: underline;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.boton-animado {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.mover-abajo {
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+/* Animación para el color de fondo */
 @keyframes cambiarColorFondo {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
 
+/* Animación para el color del título */
 @keyframes cambiarColorTitulo {
     0% {color: #000000} 
     10% {color: #1a1a1a}
@@ -214,6 +274,7 @@ ul {
     100% {color: #ffffff}
 }
 
+/* Animación para los textos */
 @keyframes cambiarColorTextoAnim {
     0% {color: #0dff00}
     10% {color: #00d80f}
@@ -226,6 +287,12 @@ ul {
     80% {color: #0042e8}
     90% {color: #0026ff}
     100% {color: #0015b3}
+}
+
+/* Animación de desvanecimiento */
+@keyframes desvanecer {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .section-title, #resultado {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Configuración de meta etiquetas y enlaces de fuentes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
@@ -11,23 +12,30 @@
 </head>
 
 <body>
+    <!-- Contenedor principal -->
     <main class="main-content">
         <header class="header-banner">
-            <h1 class="main-title">Amigo Secreto</h1>
+            <!-- Título y imagen del banner -->
+            <h1 class="main-title">Sorteo del Amigo Secreto</h1>
             <img src="assets/amigo-secreto.png" alt="Imagen representativa de amigo secreto">
         </header>
         
         <section class="input-section">
-            <h2 class="section-title">Coloque el nombre de sus amigos</h2>
+            <!-- Sección para agregar amigos -->
+            <h2 class="section-title">Escriba el nombre de sus amigos</h2>
             <div class="input-wrapper">
+                <!-- Campo de texto para ingresar nombres -->
                 <input type="text" id="amigo" class="input-name" placeholder="Escribe un nombre">
+                <!-- Botón para agregar nombre -->
                 <button id="agregarBtn" class="button-add" onclick="agregarAmigo()">Añadir</button> 
             </div>
            
+            <!-- Listas para mostrar amigos y resultados -->
             <ul id="listaAmigos" class="name-list" aria-labelledby="listaAmigos" role="list"></ul>
             <ul id="resultado" class="result-list" aria-live="polite"></ul>
 
             <div class="button-container">
+                <!-- Botones para sortear y reiniciar -->
                 <button id="sorteoBtn" class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto" disabled>
                     <img src="assets/play_circle_outline.png" alt="Ícono para sortear">
                     Sortear amigo
@@ -39,10 +47,10 @@
                 </button>
             </div>
 
+            <!-- Alerta de error cuando un nombre no es válido -->
             <div id="mensajeAlerta" class="mensaje-alerta">
                 ¡Error! Ingrese un nombre válido (solo letras y espacios)
             </div>
-        
         </section>
     </main>
 
