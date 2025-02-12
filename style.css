@@ -14,6 +14,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 /* Estilo para la página con animación de fondo */
 body {
     height: 100vh;
@@ -30,7 +34,7 @@ body {
     filter: brightness(1.1) contrast(1.1);
 }
 
- /* Configuración de layout para el contenido principal */
+/* Configuración de layout para el contenido principal */
 .main-content {
     display: flex;
     flex-direction: column;
@@ -47,23 +51,24 @@ body {
     padding: 40px 0 0;
 }
 
- /* Estilo para la sección donde se ingresan los amigos */
+/* Estilo para la sección donde se ingresan los amigos */
 .input-section {
     flex: 60%;
     background-color: var(--color-secondary);
-    border: 1px solid #000;
+    border: 2px solid #000;
     border-radius: 64px 64px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
     width: 100%;
 }
 
 /* Títulos */
 .main-title {
     font-size: 48px;
-    font-family: "Merriweather", serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     font-weight: 900;
     font-style: italic;
     color: #000000; 
@@ -71,7 +76,8 @@ body {
 }
 
 .section-title {
-    font-family: "Inter", serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     font-size: 36px;
     font-weight: 700;
     margin: 10px 0;
@@ -89,10 +95,15 @@ body {
 
 .input-name {
     width: 100%;
-    padding: 10px;
+    height: 100%;
+    padding: 15px;
     border: 2px solid #000;
     border-radius: 25px 0 0 25px;
-    font-size: 16px;
+    font-size: 20px;
+}
+
+.input-name[disabled] {
+    cursor: not-allowed;
 }
 
 .button-container {
@@ -110,19 +121,22 @@ body {
     border: 2px solid #333;
     border-right: none;
     border-radius: 25px 0 0 25px;
-    font-family: "Merriweather", serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Estilos de botón */
 button {
     padding: 15px 30px;
-    font-family: "Inter", sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     font-size: 16px;
     border: 2px solid #000;
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
 
 .button-add {
@@ -132,14 +146,20 @@ button {
 }
 
 .button-add:hover{
-    background-color: #a1a1a1;
+    background-color: #7c7c7c;
+}
+
+.button-add[disabled] {
+    cursor: not-allowed;
+    background-color: var(--color-tertiary);
 }
 
 /* Estilos de listas */
 ul {
     list-style-type: none;
     color: var(--color-text);
-    font-family: "Inter", sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     font-size: 20px;
     margin: 20px 0;
     display: flex;
@@ -160,25 +180,12 @@ li {
     transition: opacity 0.5s ease-in-out;
 }
 
-@keyframes desvanecer {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes parpadeo {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-/* Estilos para el borde cuando un bloque es seleccionado */
 li.selected {
-    animation: parpadeo 1s infinite; 
+    animation: parpadeo 0.95s infinite; 
     text-decoration: underline;
     font-weight: bold;
 }
 
-/* Los bloques no seleccionados no tendrán animación de parpadeo */
 li:not(.selected) {
     opacity: 1;
 }
@@ -214,8 +221,38 @@ li:not(.selected) {
     height: 35px;
 }
 
-.button-draw:hover, .button-image:hover {
-    background-color: #952800;
+/* Estilo del botón de Sorteo */
+#sorteoBtn {
+    background-color: #ff7b00;
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+#sorteoBtn:hover {
+    background-color: #a74800;
+}
+
+#sorteoBtn[disabled] {
+    background-color: black;
+    cursor: not-allowed;
+}
+
+/* Estilo del botón de Reinicio */
+#reinicioBtn {
+    background-color: black; 
+    color: white; 
+    cursor: not-allowed; 
+    transition: background-color 0.3s ease;
+}
+
+#reinicioBtn:not([disabled]) {
+    background-color: #ff7b00;
+    cursor: pointer; 
+}
+
+#reinicioBtn:not([disabled]):hover {
+    background-color: #a74800;
 }
 
 /* Estilo del mensaje de alerta */
@@ -224,19 +261,28 @@ li:not(.selected) {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: black;
-    color: white;
+    background-color: #d9534f; 
+    color: white;  
     padding: 10px;
     border-radius: 8px;
     font-size: 20px;
     font-weight: bold;
-    font-family: "Arial", sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
     display: none;
     z-index: 1000;
 }
 
+#resultado {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+/* Sobrescribe la cursiva en el nombre del amigo secreto */
 .subrayado {
     text-decoration: underline;
+    font-style: normal;
+    font-weight: bold; 
 }
 
 .fade-out {
@@ -244,19 +290,44 @@ li:not(.selected) {
     transition: opacity 0.5s ease-out;
 }
 
-.boton-animado {
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+.not-allowed {
+    cursor: not-allowed;
 }
 
-.mover-abajo {
-    transform: translateY(50px);
-    opacity: 0;
+.mensaje-alerta {
+    display: none;
+}
+.mensaje-alerta.mostrar {
+    display: block;
+}
+
+.section-title, #resultado {
+    animation: cambiarColorTextoAnim 11s infinite alternate ease-in-out;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(20px);
+    z-index: -1;
 }
 
 /* Animación para el color de fondo */
 @keyframes cambiarColorFondo {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
+}
+
+/* Animación de "parpadeo" */
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 /* Animación para el color del título */
@@ -293,20 +364,4 @@ li:not(.selected) {
 @keyframes desvanecer {
     0% { opacity: 0; }
     100% { opacity: 1; }
-}
-
-.section-title, #resultado {
-    animation: cambiarColorTextoAnim 11s infinite alternate ease-in-out;
-}
-
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    filter: blur(20px);
-    z-index: -1;
 }
